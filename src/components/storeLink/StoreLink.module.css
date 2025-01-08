@@ -1,0 +1,40 @@
+.storeLinkContainer{
+    display: flex;
+    flex-direction: row;
+    font-size: var(--category);
+    color: var(--font-color-light);
+    background-color: var(--placeholder-color);
+    border-radius: 5px;
+    gap: 10px;
+    transition: 0.3s;
+    opacity: 90%;
+}
+.fallback{
+    opacity: 90%;
+    transition: 0.3s;
+}
+.fallback:hover{
+    opacity: 100%;
+}
+.storeLinkContainer:hover{
+    color: white;
+    opacity: 100%;
+    font-weight: var(--medium);
+}
+
+.storeLinkImage{
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.storeLinkText{
+    align-self: center;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .storeLinkContainer{
+        font-size: var(--quote);
+    }
+}

@@ -1,0 +1,11 @@
+.boughtContainer{
+    display: flex;
+    background-color: var(--bought-color);
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+.boughtContainer:hover{
+    background-color: #336bbe;
+}

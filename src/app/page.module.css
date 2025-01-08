@@ -1,0 +1,18 @@
+.teste{
+  font-size: var(--text);
+  font-weight: var(--light-weight);
+}
+
+.listContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-left: 20px;
+}
+
+@media (max-width: 425px) {
+  .listContainer{
+    padding-left: 0px;
+    justify-content: center;
+  }
+}

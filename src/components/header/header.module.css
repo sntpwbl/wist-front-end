@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2.5vh 2.5vw 2.5vh 2.5vw;
+    font-size: var(--subtitle);
+    font-weight: var(--light);
+    transition: 0.5s;
+}
+
+.buttonContainer{
+    display: flex;
+    gap: 2vw;
+}
+
+.headerButton{
+    transition: 0.5s;
+}
+
+.headerButton:hover{
+    font-weight: var(--bold);
+    font-size: calc(100% * 1.2);
+}
+
+@media (min-width: 1000px){
+    .container {
+        font-size: var(--title);
+    }
+    .buttonContainer{
+        gap: 1vw
+    }
+}

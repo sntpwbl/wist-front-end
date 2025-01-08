@@ -1,0 +1,40 @@
+.inputImage{
+    display: none;    
+}
+.properties{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.properties textarea, .properties input{
+    resize: none;
+    border: none;
+    font-family: var(--font-lexend);
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.properties textarea{
+    height: 175px
+}
+
+@media (min-width: 1023px) {
+    .properties textarea, .properties input{
+        font-size: 18px;
+    }
+    .properties textarea{
+        height: 200px
+    }
+}
+
+.inputButton{
+    font-family: var(--font-lexend);
+    padding: 5px;
+}
+
+.inputButton:hover{
+    cursor: pointer;
+}

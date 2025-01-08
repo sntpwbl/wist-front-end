@@ -28,12 +28,19 @@ export default function InputProduct({type, id}){
     })
     const handleSubmit = async(e)=>{
         e.preventDefault()
-        
-        const res = await productUtils.createProduct(event)
-        if(res.name){
-            alert('Produto cadastrado com sucesso.')
-            router.push('/')
-        } else alert('Falha ao cadastrar produto.')
+        if(!event.name){
+            setMisc({...misc, nameInput: false})
+            return
+        }else{
+            setMisc({...misc, nameInput: true})
+            const post = await productUtils.createProduct(event)
+            if(post.name){
+                alert('Produto cadastrado com sucesso.')
+                router.push('/')
+            } else{
+                alert('Falha ao cadastrar produto.')
+            } 
+        }
     }
     useEffect(() => {
         if (!type || !id) return
@@ -67,7 +74,7 @@ export default function InputProduct({type, id}){
                 </label>
                 <input type='file' id='input-image' className={styles.inputImage} accept='image/*'/>
                 <div className={styles.properties}>
-                    <input type='text' id='input-name' placeholder={event.name || 'Adicione um nome para o produto...'} value={event.name} required onChange={(e)=>setEvent({...event, name: e.target.value})}/>
+                    <input type='text' id='input-name' placeholder={event.name || 'Adicione um nome para o produto...'} value={event.name} required style={{border: misc.nameInput ? 'none' : '5px solid red'}} onChange={(e)=>setEvent({...event, name: e.target.value})}/>
                     <textarea id='input-description' maxLength={240} placeholder={event.description || 'Adicione uma descrição para o produto...'} onChange={(e)=>setEvent({...event, description: e.target.value})} />
                     <input type='submit' value='Cadastrar produto' className={styles.inputButton} onClick={(e)=>handleSubmit(e)}/>
                 </div>

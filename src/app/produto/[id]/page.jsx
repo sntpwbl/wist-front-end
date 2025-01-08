@@ -15,7 +15,7 @@ export default async function ProductById({params}){
 
     const product = await productUtils.findProductById(id)
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div className="alignCenter">
             <ExtendedProduct product={product}/>
         </div>
     )

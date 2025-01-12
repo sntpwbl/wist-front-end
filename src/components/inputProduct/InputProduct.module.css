@@ -8,6 +8,10 @@
     gap: 10px;
 }
 
+.inputBox{
+    transition: 0.1s;
+}
+
 .properties textarea, .properties input{
     resize: none;
     border: none;
@@ -27,6 +31,12 @@
     }
     .properties textarea{
         height: 200px
+    }
+}
+
+@media (max-width: 425px) {
+    .properties{
+        margin-top: 10px;
     }
 }
 

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = process.env.API
+const baseURL = process.env.NEXT_PUBLIC_API
 
 const api = axios.create({
     baseURL, 
@@ -12,9 +12,15 @@ export const reqs = {
     createProduct: (product) => api.post('/create', {
         name: product.name,
         description: product.description,
-        
+        picture: product.picture,
+        links: product.links
     }),
-    updateProduct: (id, product) => api.update(`/update/${id}`, product),
+    updateProduct: (id, product) => api.put(`/update/${id}`, {
+        name: product.name,
+        description: product.description,
+        picture: product.picture,
+        links: product.links
+    }),
     deleteProduct: (id) => api.delete(`/delete/${id}`),
-    changeProductBoughtStatus: (id, bought)=> api.patch(`/bought/${id}?bought=${bought}`)
+    changeProductBoughtStatus: (id, bought)=> api.patch(`/${id}/${bought}`)
 }

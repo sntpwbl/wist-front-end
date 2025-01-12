@@ -1,4 +1,3 @@
-import * as cheerio from 'cheerio'
 import { reqs } from "@/config/api"
 import axios from 'axios'
 
@@ -23,7 +22,7 @@ const findProductById = async(id)=>{
 const createProduct = async(product) => {
     try {
         const res = await reqs.createProduct(product)
-        return res.data
+        if(res.data) return res.data
     } catch (error) {
         console.error(error)
         return {}
@@ -31,9 +30,7 @@ const createProduct = async(product) => {
 }
 const updateProduct = async(id, product)=>{
     try {
-        if(!product.name) throw new Error('The \'name\' field cannot be null.')
         const updatedProduct = await reqs.updateProduct(id, product)
-        if(!product.name) throw new Error('No products were found by this ID.')
         return updatedProduct.data
     } catch (error) {
         console.error(error)
@@ -57,22 +54,7 @@ const changeProductBoughtStatus = async(id, bought)=>{
     }
 }
 
-const extractDataFromLink = async(link) =>{
-    try {
-        const res = await axios.get(link)
-        const html = res.data
-        const $ = cheerio.load(html)
 
-        const title = $('title').text()
-        const imageUrl = $('img').attr('src')
-        const domain = new URL(link).hostname
-
-        return {title, imageUrl, domain}
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-}
-const productUtils = { findAllProducts, findProductById, createProduct, updateProduct, deleteProduct, changeProductBoughtStatus, extractDataFromLink }
+const productUtils = { findAllProducts, findProductById, createProduct, updateProduct, deleteProduct, changeProductBoughtStatus }
 export default productUtils
  

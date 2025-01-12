@@ -5,7 +5,7 @@ export default function Header(){
     return <div className={styles.container}>
         <Link href='/' className={styles.headerButton}>Wist</Link>
         <nav className={styles.buttonContainer}>
-            <Link href='/produto/criar' className={styles.headerButton}>Novo produto</Link>
+            <Link href='/produto?type=criar' className={styles.headerButton}>Novo produto</Link>
         </nav>
     </div>
 }

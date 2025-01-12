@@ -40,6 +40,19 @@
         margin-top: 20px;
     }
 }
+@media (max-width: 320px) {
+    .extendedContainer{
+        padding: 40px 50px 40px 35px;
+    }
+    .extendedImg{
+        height: 220px;
+        width: 220px;
+    }
+    .properties{
+        margin-top: 20px;
+    }
+}
+
 @media (max-width: 425px) {
     .properties{
         margin-top: 20px;

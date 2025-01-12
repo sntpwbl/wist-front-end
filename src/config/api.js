@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = process.env.NEXT_PUBLIC_API
+const baseURL = process.env.API_SECRET_KEY
 
 const api = axios.create({
     baseURL, 

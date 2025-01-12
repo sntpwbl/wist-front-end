@@ -14,7 +14,6 @@ export default async function ProductById({params}){
     const {id} = await params
 
     const product = await productUtils.findProductById(id)
-    console.log(product)
     return (
         <div className="alignCenter">
             <ExtendedProduct product={product}/>

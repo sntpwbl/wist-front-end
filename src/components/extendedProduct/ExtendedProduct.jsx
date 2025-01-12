@@ -6,9 +6,9 @@ import Link from 'next/link'
 
 export default function ExtendedProduct({product}){
     
-    const {name, description, boughtProduct, picture, links } = product
+    const {name, description, bought, picture, links } = product
 
-    return <div style={{border: boughtProduct ? 'solid 5px #3083FF' : 'none'}} className={styles.extendedContainer}>
+    return <div style={{border: bought ? 'solid 5px #3083FF' : 'none'}} className={styles.extendedContainer}>
         {/* <p style={{color: 'white', }}>oi</p> */}
         <div className={styles.imgAndProperties}>
             {picture ? (
@@ -30,7 +30,7 @@ export default function ExtendedProduct({product}){
                     </div>
                     )}
                 </div>
-                {boughtProduct && (
+                {bought && (
                     <BoughtLabel style={{marginTop: 30}}/>
                 )}
             </div>

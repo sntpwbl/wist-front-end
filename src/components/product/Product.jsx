@@ -9,7 +9,7 @@ export default function Product({product, ...rest}){
     const formattedName = product.name.length>=20 ? product.name.substring(0, 20)+'...' : product.name
 
     return <Link href={`/produto/${product.id}`} {...rest}>
-                <div style={{border: product.boughtProduct ? 'solid 5px #3083FF' : 'none', padding: product.boughtProduct ? 15 : 20}} className={styles.productContainer}>
+                <div style={{border: product.bought ? 'solid 5px #3083FF' : 'none', padding: product.bought ? 15 : 20}} className={styles.productContainer}>
                     <div>
                         {product.picture ? (
                             <img src={product.picture} className={styles.productImage} alt={`imagem do produto ${product.name}`}/>

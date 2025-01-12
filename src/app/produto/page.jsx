@@ -11,13 +11,13 @@ export default async function UpdateOrCreateProduct({searchParams}){
     const {type} = await searchParams
     const {id} = await searchParams
 
-    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    return <div className="alignCenter">
         {type && id ? 
             (
                 <InputProduct type={type} id={id}/>
             )
          : !id && type==='criar' ? (
             <InputProduct type={type}/>
-         ) : <h1>Volte para a tela inicial clicando no logotipo do site.</h1>}
+         ) : <h1>Valores inválidos. Volte para a tela inicial clicando no logotipo do site.</h1>}
     </div>
 }

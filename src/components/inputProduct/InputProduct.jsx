@@ -14,13 +14,8 @@ export default function InputProduct({type, id}){
         name: '',
         description: '',
         picture: '',
-        boughtProduct: false,
-        firstStore: '', 
-        secondStore: '', 
-        thirdStore: '', 
-        firstLink: '', 
-        secondLink: '', 
-        thirdLink: ''
+        bought: false,
+        links: []
     })
 
     const [misc, setMisc] = useState({
@@ -28,25 +23,36 @@ export default function InputProduct({type, id}){
     })
     const handleSubmit = async(e)=>{
         e.preventDefault()
-        
-        const res = await productUtils.createProduct(event)
-        if(res.name){
-            alert('Produto cadastrado com sucesso.')
-            router.push('/')
-        } else alert('Falha ao cadastrar produto.')
+        if(!event.name){
+            setMisc({...misc, nameInput: false})
+            return
+        }
+        if(type==='criar'){
+            const product = await productUtils.createProduct(event)
+            if(product.name){
+                alert('Produto cadastrado com sucesso.')
+                router.push('/')
+            } else{
+                alert('Falha ao cadastrar produto.')
+            }
+        } else if(type==='atualizar' && id){
+            const product = await productUtils.updateProduct(id, event)
+            if(product.name){
+                alert('Produto atualizado com sucesso.')
+                router.push(`/produto/${id}`)
+            }else{
+                alert('Falha ao atualizar o produto.')
+            }
+        } else router.push('/')
     }
+
     useEffect(() => {
-        if (!type || !id) return
-    
+
         const fetchProduct = async () => {
             if (type === 'atualizar') {
-                try {
-                    const product = await productUtils.findProductById(id);
-                    if (product?.name) {
-                        setEvent(product);
-                    }
-                } catch (error) {
-                    console.error("Erro ao buscar produto:", error);
+                const product = await productUtils.findProductById(id);
+                if (product?.name) {
+                    setEvent(product);
                 }
             }
         };
@@ -56,7 +62,7 @@ export default function InputProduct({type, id}){
 
 
     return(
-       <form method={type==='criar' ? 'post' : 'put'} className={styledContainer.extendedContainer}>
+       <form className={styledContainer.extendedContainer}>
             <div className={styledContainer.imgAndProperties}>
                 <label className={styles.labelImage} htmlFor='input-image'>
                     {event.picture ? (
@@ -67,9 +73,9 @@ export default function InputProduct({type, id}){
                 </label>
                 <input type='file' id='input-image' className={styles.inputImage} accept='image/*'/>
                 <div className={styles.properties}>
-                    <input type='text' id='input-name' placeholder={event.name || 'Adicione um nome para o produto...'} value={event.name} required onChange={(e)=>setEvent({...event, name: e.target.value})}/>
-                    <textarea id='input-description' maxLength={240} placeholder={event.description || 'Adicione uma descrição para o produto...'} onChange={(e)=>setEvent({...event, description: e.target.value})} />
-                    <input type='submit' value='Cadastrar produto' className={styles.inputButton} onClick={(e)=>handleSubmit(e)}/>
+                    <input type='text' id='input-name' placeholder={event.name || 'Adicione um nome para o produto...'} value={event.name} required style={{border: misc.nameInput ? 'none' : '5px solid red'}} className={styles.inputBox} onChange={(e)=>setEvent({...event, name: e.target.value})}/>
+                    <textarea id='input-description' maxLength={240} value={event.description} placeholder={'Adicione uma descrição para o produto...'} onChange={(e)=>setEvent({...event, description: e.target.value})} />
+                    <input type='submit' value={type==='criar' ? 'Cadastrar produto' : 'Atualizar produto'} className={styles.inputButton} onClick={(e)=>handleSubmit(e)}/>
                 </div>
             </div>
        </form> 

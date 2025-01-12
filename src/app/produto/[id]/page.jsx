@@ -6,7 +6,7 @@ export async function generateMetadata({params}){
 
     const product = await productUtils.findProductById(id)
     return {
-        title: product.name
+        title: `Produto ${product.name}`
     }
 }
 
@@ -14,8 +14,9 @@ export default async function ProductById({params}){
     const {id} = await params
 
     const product = await productUtils.findProductById(id)
+    console.log(product)
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div className="alignCenter">
             <ExtendedProduct product={product}/>
         </div>
     )

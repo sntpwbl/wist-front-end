@@ -1,0 +1,11 @@
+.inputStore{
+    width: 75px;
+}
+@media (min-width: 1440px) {
+    .inputStore{
+        width: 150px;
+    }
+}
+.inputUrl{
+    width: 100%
+}

@@ -6,6 +6,7 @@ import Placeholder from '../../../public/placeholder.svg'
 import productUtils from '@/utils/productUtils'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react"
+import StoreLink from '../storeLink/StoreLink'
 
 export default function InputProduct({type, id}){
     const router = useRouter() 
@@ -19,7 +20,8 @@ export default function InputProduct({type, id}){
     })
 
     const [misc, setMisc] = useState({
-        nameInput: true
+        nameInput: true,
+        numberOfLinks: 3
     })
     const handleSubmit = async(e)=>{
         e.preventDefault()
@@ -45,6 +47,7 @@ export default function InputProduct({type, id}){
             }
         } else router.push('/')
     }
+    
 
     useEffect(() => {
 
@@ -66,15 +69,18 @@ export default function InputProduct({type, id}){
             <div className={styledContainer.imgAndProperties}>
                 <label className={styles.labelImage} htmlFor='input-image'>
                     {event.picture ? (
-                        <img src={event.picture} alt='no picture found for this product' style={{cursor: 'pointer'}}  className={styledContainer.extendedImg}/>
+                        <img src={event.picture} alt='product preview' className={styledContainer.extendedImg}/>
                     ) : (
-                        <Image src={Placeholder} alt='no picture found for this product' style={{cursor: 'pointer'}} className={styledContainer.extendedImg}/>
+                        <Image src={Placeholder} alt='preview placeholder' className={styledContainer.extendedImg}/>
                     )}
                 </label>
-                <input type='file' id='input-image' className={styles.inputImage} accept='image/*'/>
                 <div className={styles.properties}>
                     <input type='text' id='input-name' placeholder={event.name || 'Adicione um nome para o produto...'} value={event.name} required style={{border: misc.nameInput ? 'none' : '5px solid red'}} className={styles.inputBox} onChange={(e)=>setEvent({...event, name: e.target.value})}/>
                     <textarea id='input-description' maxLength={240} value={event.description} placeholder={'Adicione uma descrição para o produto...'} onChange={(e)=>setEvent({...event, description: e.target.value})} />
+                    <input type='text' id='input-picture' placeholder={event.picture || 'Adicione a URL da foto que deseja enviar...'} value={event.picture} className={styles.inputBox} onChange={(e)=>setEvent({...event, picture: e.target.value})}/>
+                    {/* <StoreLink storeValue={event?.links[0]?.store} onStoreChange={()=>setEvent({...event, links})}/>
+                    <StoreLink />
+                    <StoreLink /> */}
                     <input type='submit' value={type==='criar' ? 'Cadastrar produto' : 'Atualizar produto'} className={styles.inputButton} onClick={(e)=>handleSubmit(e)}/>
                 </div>
             </div>

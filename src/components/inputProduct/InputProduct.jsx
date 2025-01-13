@@ -67,7 +67,7 @@ export default function InputProduct({type, id}){
     return(
        <form className={styledContainer.extendedContainer}>
             <div className={styledContainer.imgAndProperties}>
-                <label className={styles.labelImage} htmlFor='input-image'>
+                <label className={styles.labelImage} htmlFor='input-picture'>
                     {event.picture ? (
                         <img src={event.picture} alt='product preview' className={styledContainer.extendedImg}/>
                     ) : (

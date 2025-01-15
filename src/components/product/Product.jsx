@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './product.module.css'
 import Link from 'next/link'
 import Placeholder from '../../../public/placeholder.svg'
-import BoughtLabel from '../boughtLabel/BoughtLabel'
+import {BoughtLabel} from '../boughtLabel/BoughtLabel'
 
 export default function Product({product, ...rest}){
     const formattedDescription = !product.description || product.description?.length==0 ? '' : product.description.length >= 80 ? product.description.substring(0, 80)+'...' : product.description

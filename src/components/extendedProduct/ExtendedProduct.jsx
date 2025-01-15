@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './ExtendedProduct.module.css'
 import Placeholder from '../../../public/placeholder.svg'
-import BoughtLabel from '../boughtLabel/BoughtLabel'
+import {BoughtLabel, NotBoughtLabel} from '../boughtLabel/BoughtLabel'
 import Link from 'next/link'
 
 export default function ExtendedProduct({product}){
@@ -39,8 +39,10 @@ export default function ExtendedProduct({product}){
                     </div>
                     )}
                 </div>
-                {bought && (
-                    <BoughtLabel style={{marginTop: 30}}/>
+                {bought ? (
+                    <BoughtLabel extended style={{marginTop: 30}}/>
+                ): (
+                    <NotBoughtLabel extended style={{marginTop: 30}} />
                 )}
             </div>
         </div>

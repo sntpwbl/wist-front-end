@@ -6,6 +6,25 @@
     text-transform: uppercase;
     transition: 0.3s;
 }
-.boughtContainer:hover{
+.notBoughtContainer{
+    display: flex;
+    background-color: var(--not-bought-color);
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+.boughtContainer:hover {
     background-color: #336bbe;
+    cursor: pointer;
+}
+.notBoughtContainer:hover{
+    background-color: rgba(209, 0, 0, 0.867);
+    cursor: pointer;
+}
+
+@media (max-width: 375px) {
+    .notBoughtContainer{
+        font-size: small;
+    }
 }

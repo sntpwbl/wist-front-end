@@ -47,7 +47,8 @@ const deleteProduct = async(id)=>{
 }
 const changeProductBoughtStatus = async(id, bought)=>{
     try {
-        return (reqs.changeProductBoughtStatus(id, bought)).data
+        const res = await reqs.changeProductBoughtStatus(id, bought)
+        return res.data
     } catch (error) {
         console.error(error)
         return {}

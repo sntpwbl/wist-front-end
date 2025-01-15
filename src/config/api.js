@@ -22,5 +22,5 @@ export const reqs = {
         links: product.links
     }),
     deleteProduct: (id) => api.delete(`/delete/${id}`),
-    changeProductBoughtStatus: (id, bought)=> api.patch(`/${id}/${bought}`)
+    changeProductBoughtStatus: (id, status)=> api.patch(`/${id}/${status}`)
 }

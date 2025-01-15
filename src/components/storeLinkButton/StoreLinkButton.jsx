@@ -1,4 +1,3 @@
-'use client'
 import styles from './StoreLinkButton.module.css'
 
 export function AddStoreLink({...rest}){

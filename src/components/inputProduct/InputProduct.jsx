@@ -7,7 +7,7 @@ import productUtils from '@/utils/productUtils'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react"
 import StoreLink from '../storeLink/StoreLink'
-import {AddStoreLink, RemoveStoreLink} from '../storeLinkButton/StoreLinkStore'
+import {AddStoreLink, RemoveStoreLink} from '../storeLinkButton/StoreLinkButton'
 
 export default function InputProduct({type, id}){
     const router = useRouter() 
@@ -22,7 +22,7 @@ export default function InputProduct({type, id}){
     
     const [misc, setMisc] = useState({
         nameInput: true,
-        numberOfLinks: event?.links?.length || 0
+        numberOfLinks: id? event?.links?.length : 0
     })
     
     const handleSubmit = async(e)=>{

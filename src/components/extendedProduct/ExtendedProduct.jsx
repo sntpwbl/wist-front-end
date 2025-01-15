@@ -29,13 +29,13 @@ export default function ExtendedProduct({product}){
                         </div>
                     )}
                     {links.length>0 && (
-                    <div style={{display: 'flex', flexDirection:'column', gap: '16px', width: '100%', marginTop: 10}}>
+                    <div style={{display: 'flex', flexDirection:'column', gap: 10, width: '100%', marginTop: 10}}>
                         <h2>Links</h2>
-                        {links.map((link, index) => (
-                            <div key={index} style={{display: 'flex', flexDirection: 'column', gap: 5}}>
-                                <Link href={link.url}><p style={{fontWeight: 700}}>{link.store}</p></Link>
-                            </div>
-                        ))}
+                        <div>
+                            {links.map((link, index) => 
+                                <Link href={link.url}><p style={{fontWeight: 700}} key={index}>{link.store}</p></Link>
+                            )}
+                        </div>
                     </div>
                     )}
                 </div>

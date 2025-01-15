@@ -29,7 +29,7 @@ export default function ExtendedProduct({product}){
                         </div>
                     )}
                     {links.length>0 && (
-                    <div style={{display: 'flex', flexDirection:'column', gap: 10, width: '100%', marginTop: 10}}>
+                    <div style={{display: 'flex', flexDirection:'column',  width: '100%', marginTop: 10}}>
                         <h2>Links</h2>
                         <div>
                             {links.map((link, index) => 

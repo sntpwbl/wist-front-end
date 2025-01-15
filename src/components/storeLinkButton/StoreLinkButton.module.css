@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 90%;
+    padding: 10px;
+    border-radius: 30px;
+    height: 30px;
+    width: 30px;
+    color: var(--font-color-dark);
+    background-color: var(--font-color-light);
+    font-weight: var(--bold);
+    transition: 0.3s;
+}
+
+.container:hover{
+    opacity: 100%;
+    cursor: pointer;
+    color: #000;
+    background-color: #fff;
+}

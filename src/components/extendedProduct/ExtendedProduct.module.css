@@ -14,10 +14,20 @@
     object-fit: cover;
 }
 
+.titleAndItems{
+    display: flex;
+    flex-direction: column;
+}
+
 @media (min-width: 1024px) {
     .extendedImg{
         height: 400px;
         width: 400px;
+    }
+    .titleAndItems{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
     
 }

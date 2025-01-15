@@ -7,6 +7,7 @@ import productUtils from '@/utils/productUtils'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react"
 import StoreLink from '../storeLink/StoreLink'
+import {AddStoreLink, RemoveStoreLink} from '../storeLinkButton/StoreLinkStore'
 
 export default function InputProduct({type, id}){
     const router = useRouter() 
@@ -18,11 +19,12 @@ export default function InputProduct({type, id}){
         bought: false,
         links: []
     })
-
+    
     const [misc, setMisc] = useState({
         nameInput: true,
-        numberOfLinks: 3
+        numberOfLinks: event?.links?.length || 0
     })
+    
     const handleSubmit = async(e)=>{
         e.preventDefault()
         if(!event.name){
@@ -63,6 +65,36 @@ export default function InputProduct({type, id}){
         fetchProduct();
     }, [type, id]);
 
+    const handleAddLink = () =>{
+        if(misc.numberOfLinks<3){
+            setMisc({...misc, numberOfLinks: misc.numberOfLinks+1})
+        }
+    }
+    const handleRemoveLink = () =>{
+        if(misc.numberOfLinks>0){
+            const updatedLinks = [...event.links];
+            updatedLinks.splice((misc.numberOfLinks-1), 1); 
+            setEvent({ ...event, links: updatedLinks });
+            setMisc({ ...misc, numberOfLinks: misc.numberOfLinks - 1 });
+        }
+    }
+
+    const handleStoreChange = (index, updatedStore)=>{
+        const updatedLinks = [...event.links]
+        updatedLinks[index] = {
+          ...updatedLinks[index],
+          store: updatedStore,
+        };
+        setEvent({ ...event, links: updatedLinks })
+    }
+    const handleUrlChange = (index, updatedUrl)=>{
+        const updatedLinks = [...event.links]
+        updatedLinks[index] = {
+          ...updatedLinks[index],
+          url: updatedUrl,
+        };
+        setEvent({ ...event, links: updatedLinks })
+    }
 
     return(
        <form className={styledContainer.extendedContainer}>
@@ -78,10 +110,15 @@ export default function InputProduct({type, id}){
                     <input type='text' id='input-name' placeholder={event.name || 'Adicione um nome para o produto...'} value={event.name} required style={{border: misc.nameInput ? 'none' : '5px solid red'}} className={styles.inputBox} onChange={(e)=>setEvent({...event, name: e.target.value})}/>
                     <textarea id='input-description' maxLength={240} value={event.description} placeholder={'Adicione uma descrição para o produto...'} onChange={(e)=>setEvent({...event, description: e.target.value})} />
                     <input type='text' id='input-picture' placeholder={event.picture || 'Adicione a URL da foto que deseja enviar...'} value={event.picture} className={styles.inputBox} onChange={(e)=>setEvent({...event, picture: e.target.value})}/>
-                    {/* <StoreLink storeValue={event?.links[0]?.store} onStoreChange={()=>setEvent({...event, links})}/>
-                    <StoreLink />
-                    <StoreLink /> */}
-                    <input type='submit' value={type==='criar' ? 'Cadastrar produto' : 'Atualizar produto'} className={styles.inputButton} onClick={(e)=>handleSubmit(e)}/>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: 10, alignSelf: 'center'}}>
+                        <AddStoreLink onClick={handleAddLink}/>
+                        {misc.numberOfLinks>0 && <RemoveStoreLink onClick={handleRemoveLink}/>}
+                    </div>
+                    {misc.numberOfLinks > 0 && 
+                        Array.from({ length: misc.numberOfLinks }).map((_, i) => (
+                            <StoreLink key={i} storeValue={event?.links[i]?.store} urlValue={event?.links[i]?.url} onStoreChange={(e)=>handleStoreChange(i, e.target.value)} onUrlChange={(e)=>handleUrlChange(i, e.target.value)}/>
+                        ))}
+                    <input type='submit' value={type==='criar' ? 'Cadastrar produto' : 'Atualizar produto'}  className={styles.inputButton} onClick={(e)=>handleSubmit(e)}/>
                 </div>
             </div>
        </form> 

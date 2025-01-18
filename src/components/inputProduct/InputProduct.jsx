@@ -22,7 +22,7 @@ export default function InputProduct({type, id}){
     
     const [misc, setMisc] = useState({
         nameInput: true,
-        numberOfLinks: id? event?.links?.length : 0
+        numberOfLinks: event?.links?.length || 0
     })
     
     const handleSubmit = async(e)=>{
@@ -58,6 +58,7 @@ export default function InputProduct({type, id}){
                 const product = await productUtils.findProductById(id);
                 if (product?.name) {
                     setEvent(product);
+                    setMisc({...misc, numberOfLinks: product.links.length})
                 }
             }
         };

@@ -50,7 +50,21 @@ export default function InputProduct({type, id}){
         } else router.push('/')
     }
     
-
+    useEffect(()=>{
+        if(type==='criar'){
+            setEvent({
+                name: '',
+                description: '',
+                picture: '',
+                bought: false,
+                links: []
+            })
+            setMisc({
+                nameInput: true,
+                numberOfLinks: 0
+            })
+        }
+    }, [type])
     useEffect(() => {
 
         const fetchProduct = async () => {

@@ -1,5 +1,4 @@
 import { reqs } from "@/config/api"
-import axios from 'axios'
 
 const findAllProducts = async()=>{
     try {

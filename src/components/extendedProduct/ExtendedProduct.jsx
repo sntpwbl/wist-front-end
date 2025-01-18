@@ -8,6 +8,8 @@ export default function ExtendedProduct({product}){
     
     const {id, name, description, bought, picture, links } = product
 
+    
+
     return <div style={{border: bought ? 'solid 5px #3083FF' : 'none'}} className={styles.extendedContainer}>
         <div className={styles.imgAndProperties}>
             {picture ? (
@@ -40,9 +42,9 @@ export default function ExtendedProduct({product}){
                     )}
                 </div>
                 {bought ? (
-                    <BoughtLabel extended style={{marginTop: 30}}/>
+                    <BoughtLabel id={id} extended style={{marginTop: 30}}/>
                 ): (
-                    <NotBoughtLabel extended style={{marginTop: 30}} />
+                    <NotBoughtLabel id={id} extended style={{marginTop: 30}} />
                 )}
             </div>
         </div>

@@ -4,7 +4,7 @@ import styles from './ExtendedProduct.module.css'
 import Placeholder from '../../../public/placeholder.svg'
 import {BoughtLabel, NotBoughtLabel} from '../boughtLabel/BoughtLabel'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function ExtendedProduct({product}){
     

@@ -1,14 +1,15 @@
+'use client'
 import Image from 'next/image'
 import styles from './ExtendedProduct.module.css'
 import Placeholder from '../../../public/placeholder.svg'
 import {BoughtLabel, NotBoughtLabel} from '../boughtLabel/BoughtLabel'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function ExtendedProduct({product}){
     
-    const {id, name, description, bought, picture, links } = product
-
-    
+    const {id, name, description, picture, links } = product
+    const [ bought, setBought] = useState(product.bought)
 
     return <div style={{border: bought ? 'solid 5px #3083FF' : 'none'}} className={styles.extendedContainer}>
         <div className={styles.imgAndProperties}>
@@ -42,9 +43,9 @@ export default function ExtendedProduct({product}){
                     )}
                 </div>
                 {bought ? (
-                    <BoughtLabel id={id} extended style={{marginTop: 30}}/>
+                    <BoughtLabel id={id} onClick={(b)=>setBought(b)} extended style={{marginTop: 30}}/>
                 ): (
-                    <NotBoughtLabel id={id} extended style={{marginTop: 30}} />
+                    <NotBoughtLabel id={id} onClick={(b)=>setBought(b)} extended style={{marginTop: 30}} />
                 )}
             </div>
         </div>

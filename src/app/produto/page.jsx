@@ -2,6 +2,7 @@ import InputProduct from "@/components/inputProduct/InputProduct"
 
 export async function generateMetadata({searchParams}){
     const {type} = await searchParams
+    
     return{
         title: type==='criar'? 'Novo produto' : 'Atualizar produto'
     }

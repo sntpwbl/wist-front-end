@@ -39,7 +39,8 @@ const updateProduct = async(id, product)=>{
 }
 const deleteProduct = async(id)=>{
     try {
-        return (reqs.deleteProduct(id)).data
+        await reqs.deleteProduct(id)
+        return 204
     } catch (error) {
         console.error(error)
         return {}

@@ -23,7 +23,7 @@ export default function ExtendedProduct({product}){
                     <h1 className={styles.title}>{name}</h1>
                     <div style={{display: 'flex', alignItems: 'center', gap: 10}}>
                         <Link href={`/produto?type=atualizar&id=${id}`}>Atualizar</Link>
-                        <Link href=''>Excluir</Link>
+                        <Link href={`/produto/${id}/excluir`}>Excluir</Link>
                     </div>
                     {description && (
                         <div style={{marginTop: 10}}>

@@ -10,18 +10,19 @@ export default function Home() {
     const fetchProducts = async()=>{
       const prodList = await productUtils.findAllProducts()
       if(prodList.length!=0) setProducts(prodList)
+      else setProducts()
     }
     fetchProducts()
   }, [])
 
   return (
-      <div className={!products ? 'alignCenter' : styles.listContainer}>
-        {!products ? <p>Carregando...</p> :
-
+      <div className={products && products.length===0 || !products ? 'alignCenter' : styles.listContainer}>
+        {
         products && products.length>0 ? products.map((product) => (
           <Product key={product.id} product={product} />
         )) : 
-        
+        products && products.length===0 ? <p>Carregando...</p>
+        :
         <p>Nenhum produto encontrado.</p>}
       </div>
     );
